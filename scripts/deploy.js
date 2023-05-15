@@ -12,11 +12,8 @@ async function main() {
 	console.log(`Deployed contract to: ${simpleStorage.address}`);
 
 	// Verification
-	const hardhatChainId = 31337;
-	if (
-		network.config.chainId !== hardhatChainId &&
-		process.env.ETHERSCAN_API_KEY
-	) {
+	const notHardHat = network.config.chainId !== 31337;
+	if (notHardHat && process.env.ETHERSCAN_API_KEY) {
 		console.log('Waiting for block confirmations..');
 		await simpleStorage.deployTransaction.wait(6);
 		verify(simpleStorage.address, []);
@@ -28,6 +25,7 @@ async function main() {
 
 	const tranactionResponse = await simpleStorage.store(7);
 	await tranactionResponse.wait(1);
+
 	const updateValue = await simpleStorage.retrieve();
 	console.log(`Update Value is: ${updateValue}`);
 }
