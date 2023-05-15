@@ -17,9 +17,7 @@
   },
   "homepage": "https://github.com/mohammedjammeh/syiox#readme",
   "dependencies": {
-    "hardhat": "^2.14.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-solidity": "^1.1.3"
+    "hardhat": "^2.14.0"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
