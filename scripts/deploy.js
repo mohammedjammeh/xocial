@@ -1,6 +1,6 @@
 const { ethers, run, network } = require('hardhat');
 
-async function main() {
+async function simpleStorageMain() {
 	const SimpleStorageFactory = await ethers.getContractFactory('SimpleStorage');
 
 	// Deployment
@@ -28,6 +28,26 @@ async function main() {
 
 	const updateValue = await simpleStorage.retrieve();
 	console.log(`Update Value is: ${updateValue}`);
+}
+
+async function main() {
+	const EventContractFactory = await ethers.getContractFactory('EventContract');
+
+	// Deployment
+	console.log('Deploying contract..');
+
+	const eventContract = await EventContractFactory.deploy();
+	await eventContract.deployed();
+
+	console.log(`Deployed contract to: ${eventContract.address}`);
+
+	// Verification
+	const notHardHat = network.config.chainId !== 31337;
+	if (notHardHat && process.env.ETHERSCAN_API_KEY) {
+		console.log('Waiting for block confirmations..');
+		await eventContract.deployTransaction.wait(6);
+		verify(eventContract.address, []);
+	}
 }
 
 async function verify(contractAddress, args) {
