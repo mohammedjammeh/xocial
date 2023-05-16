@@ -1,6 +1,9 @@
 const { ethers, run, network } = require('hardhat');
 
-async function simpleStorageMain() {
+/*
+ * SimpleStorage
+ */
+async function SimpleStorage() {
 	const SimpleStorageFactory = await ethers.getContractFactory('SimpleStorage');
 
 	// Deployment
@@ -16,7 +19,7 @@ async function simpleStorageMain() {
 	if (notHardHat && process.env.ETHERSCAN_API_KEY) {
 		console.log('Waiting for block confirmations..');
 		await simpleStorage.deployTransaction.wait(6);
-		verify(simpleStorage.address, []);
+		await verify(simpleStorage.address, []);
 	}
 
 	// Action
@@ -30,6 +33,9 @@ async function simpleStorageMain() {
 	console.log(`Update Value is: ${updateValue}`);
 }
 
+/*
+ * Main
+ */
 async function main() {
 	const EventContractFactory = await ethers.getContractFactory('EventContract');
 
@@ -46,10 +52,13 @@ async function main() {
 	if (notHardHat && process.env.ETHERSCAN_API_KEY) {
 		console.log('Waiting for block confirmations..');
 		await eventContract.deployTransaction.wait(6);
-		verify(eventContract.address, []);
+		await verify(eventContract.address, []);
 	}
 }
 
+/*
+ * Verification
+ */
 async function verify(contractAddress, args) {
 	console.log('Verifying contract..');
 
