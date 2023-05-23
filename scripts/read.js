@@ -7,7 +7,7 @@ const provider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_RPC_UR
 const contract = new ethers.Contract(address, abi, provider);
 
 const main = async () => {
-	const all = await contract.getEvents();
+	const all = await contract.getAll();
 	console.log(all);
 };
 
