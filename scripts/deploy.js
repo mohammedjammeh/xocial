@@ -37,22 +37,22 @@ async function SimpleStorage() {
  * Main
  */
 async function main() {
-	const EventContractFactory = await ethers.getContractFactory('EventContract');
+	const contractFactory = await ethers.getContractFactory('EventContract');
 
 	// Deployment
 	console.log('Deploying contract..');
 
-	const eventContract = await EventContractFactory.deploy();
-	await eventContract.deployed();
+	const contract = await contractFactory.deploy();
+	await contract.deployed();
 
-	console.log(`Deployed contract to: ${eventContract.address}`);
+	console.log(`Deployed contract to: ${contract.address}`);
 
 	// Verification
 	const notHardHat = network.config.chainId !== 31337;
 	if (notHardHat && process.env.ETHERSCAN_API_KEY) {
 		console.log('Waiting for block confirmations..');
-		await eventContract.deployTransaction.wait(6);
-		await verify(eventContract.address, []);
+		await contract.deployTransaction.wait(6);
+		await verify(contract.address, []);
 	}
 }
 
