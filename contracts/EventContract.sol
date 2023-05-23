@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity >=0.8.0 <0.9.0;
 
 contract EventContract {
 	struct Event {
@@ -10,7 +10,7 @@ contract EventContract {
 		string location;
 		uint256 moment;
 		address[] attendees;
-		uint256[] attendessPayments;
+		uint256[] attendeesPayments;
 		uint256 totalPayed;
 	}
 
@@ -54,10 +54,8 @@ contract EventContract {
 		}
 	}
 
-	function getAttendees(
-		uint256 _id
-	) public view returns (address[] memory, uint256[] memory) {
-		return (events[_id].attendees, events[_id].attendessPayments);
+	function getAttendees(uint256 _id) public view returns (address[] memory, uint256[] memory) {
+		return (events[_id].attendees, events[_id].attendeesPayments);
 	}
 
 	function getEvents() public view returns (Event[] memory) {
