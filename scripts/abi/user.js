@@ -1,0 +1,72 @@
+module.exports = [
+	{
+		inputs: [
+			{ internalType: 'uint256', name: 'user_id', type: 'uint256' },
+			{ internalType: 'uint256', name: 'link_id', type: 'uint256' },
+		],
+		name: 'addLink',
+		outputs: [],
+		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'count',
+		outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+		stateMutability: 'view',
+		type: 'function',
+	},
+	{
+		inputs: [
+			{ internalType: 'address', name: '_owner', type: 'address' },
+			{ internalType: 'string', name: '_firstName', type: 'string' },
+			{ internalType: 'string', name: '_lastName', type: 'string' },
+			{ internalType: 'string', name: '_email', type: 'string' },
+			{ internalType: 'string', name: '_gender', type: 'string' },
+			{ internalType: 'uint256', name: '_dateOfBirth', type: 'uint256' },
+			{ internalType: 'uint256', name: '_phoneNumber', type: 'uint256' },
+		],
+		name: 'create',
+		outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+		stateMutability: 'nonpayable',
+		type: 'function',
+	},
+	{
+		inputs: [],
+		name: 'getAll',
+		outputs: [
+			{
+				components: [
+					{ internalType: 'address', name: 'owner', type: 'address' },
+					{ internalType: 'string', name: 'firstName', type: 'string' },
+					{ internalType: 'string', name: 'lastName', type: 'string' },
+					{ internalType: 'string', name: 'email', type: 'string' },
+					{ internalType: 'uint256', name: 'dateOfBirth', type: 'uint256' },
+					{ internalType: 'uint256', name: 'phoneNumber', type: 'uint256' },
+					{ internalType: 'string', name: 'gender', type: 'string' },
+					{ internalType: 'uint256[]', name: 'links', type: 'uint256[]' },
+				],
+				internalType: 'struct User.UserStruct[]',
+				name: '',
+				type: 'tuple[]',
+			},
+		],
+		stateMutability: 'view',
+		type: 'function',
+	},
+	{
+		inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+		name: 'users',
+		outputs: [
+			{ internalType: 'address', name: 'owner', type: 'address' },
+			{ internalType: 'string', name: 'firstName', type: 'string' },
+			{ internalType: 'string', name: 'lastName', type: 'string' },
+			{ internalType: 'string', name: 'email', type: 'string' },
+			{ internalType: 'uint256', name: 'dateOfBirth', type: 'uint256' },
+			{ internalType: 'uint256', name: 'phoneNumber', type: 'uint256' },
+			{ internalType: 'string', name: 'gender', type: 'string' },
+		],
+		stateMutability: 'view',
+		type: 'function',
+	},
+];
