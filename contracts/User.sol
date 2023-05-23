@@ -19,7 +19,7 @@ contract User {
 	uint256 public count = 0;
 
 	/*
-	 * User CRUD
+	 * CRUD
 	 */
 	function create(
 		address _owner,
