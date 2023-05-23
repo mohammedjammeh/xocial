@@ -24,8 +24,8 @@ const main = async () => {
 		console.log(error);
 	}
 
-	const allEvents = await contractWithWallet.getEvents();
-	console.log(allEvents);
+	const all = await contractWithWallet.getEvents();
+	console.log(all);
 };
 
 main();
