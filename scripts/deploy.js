@@ -37,7 +37,7 @@ async function SimpleStorage() {
  * Main
  */
 async function main() {
-	const contractFactory = await ethers.getContractFactory('EventContract');
+	const contractFactory = await ethers.getContractFactory('');
 
 	// Deployment
 	console.log('Deploying contract..');
