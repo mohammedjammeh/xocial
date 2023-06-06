@@ -1,7 +1,7 @@
 const { ethers } = require('ethers');
 
-const address = '0x99E7A010d8914b71ea486b6469364A3C0B265e7E';
-const abi = require('./abi/event');
+const address = '0xf2e568c7CEB8AD043C3dB5d7e6e3ec31D98867e7';
+const abi = require('./abi/linkUp');
 const provider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
 
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
@@ -13,12 +13,11 @@ const main = async () => {
 	try {
 		const response = await contractWithWallet.create(
 			'0x0A2169dfcC633289285290a61BB4d10AFA131817',
-			'Jump Around',
-			'Jump Jump Jump',
-			'Brikama',
-			1300
+			'Chill Sess',
+			'I just wan chill',
+			'Call that chill',
+			'2023'
 		);
-
 		await response.wait(1);
 	} catch (error) {
 		console.log(error);
