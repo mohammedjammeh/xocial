@@ -5,10 +5,11 @@ pragma solidity >=0.8.0 <0.9.0;
 contract Linkup {
 	struct LinkupStruct {
 		address owner;
-		string name;
+		string status;
 		string description;
 		string location;
 		uint256 moment;
+		address[] attendees;
 	}
 
 	mapping(uint256 => LinkupStruct) public linkups;
@@ -20,7 +21,7 @@ contract Linkup {
 	 */
 	function create(
 		address _owner,
-		string memory _name,
+		string memory _status,
 		string memory _description,
 		string memory _location,
 		uint256 _moment
@@ -28,10 +29,11 @@ contract Linkup {
 		LinkupStruct storage linkup = linkups[count];
 
 		linkup.owner = _owner;
-		linkup.name = _name;
+		linkup.status = _status;
 		linkup.description = _description;
 		linkup.location = _location;
 		linkup.moment = _moment;
+		linkup.attendees.push(msg.sender);
 
 		count++;
 
