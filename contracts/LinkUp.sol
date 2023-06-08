@@ -24,7 +24,8 @@ contract Linkup {
 		string memory _status,
 		string memory _description,
 		string memory _location,
-		uint256 _moment
+		uint256 _moment,
+		address[] memory _attendees
 	) public returns (uint256) {
 		LinkupStruct storage linkup = linkups[count];
 
@@ -33,7 +34,7 @@ contract Linkup {
 		linkup.description = _description;
 		linkup.location = _location;
 		linkup.moment = _moment;
-		linkup.attendees.push(msg.sender);
+		linkup.attendees = _attendees;
 
 		count++;
 

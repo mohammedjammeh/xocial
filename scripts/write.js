@@ -12,15 +12,17 @@ const main = async () => {
 	try {
 		const response = await contractWithWallet.create(
 			'0x0A2169dfcC633289285290a61BB4d10AFA131817',
-			'Getting Moneyy',
-			'CoooCooo',
-			'Rekeche CoooCooo',
-			'2078'
+			'Booking',
+			'Reading Sess',
+			'Library',
+			'2078',
+			['0x0A2169dfcC633289285290a61BB4d10AFA131817', '0x0A2169dfcC633289285290a61BB4d10AFA131817']
 		);
 		await response.wait(1);
 	} catch (error) {
 		console.log(error);
 	}
+
 	const all = await contractWithWallet.getAll();
 	console.log(all);
 };

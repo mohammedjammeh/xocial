@@ -1,4 +1,4 @@
-const linkupAddress = '0x47e050B4F37EF9443Cfd8f4F32c1c6Ad715A311e';
+const linkupAddress = '0x123cAd628d95a689592583D9595595Ed8B8141e8';
 
 const linkupABI = [
 	{
@@ -15,6 +15,7 @@ const linkupABI = [
 			{ internalType: 'string', name: '_description', type: 'string' },
 			{ internalType: 'string', name: '_location', type: 'string' },
 			{ internalType: 'uint256', name: '_moment', type: 'uint256' },
+			{ internalType: 'address[]', name: '_attendees', type: 'address[]' },
 		],
 		name: 'create',
 		outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
