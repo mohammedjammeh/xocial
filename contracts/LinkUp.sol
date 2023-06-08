@@ -8,7 +8,8 @@ contract Linkup {
 		string status;
 		string description;
 		string location;
-		uint256 moment;
+		uint256 startTime;
+		uint256 endTime;
 		address[] attendees;
 	}
 
@@ -24,7 +25,8 @@ contract Linkup {
 		string memory _status,
 		string memory _description,
 		string memory _location,
-		uint256 _moment,
+		uint256 _startTime,
+		uint256 _endTime,
 		address[] memory _attendees
 	) public returns (uint256) {
 		LinkupStruct storage linkup = linkups[count];
@@ -33,7 +35,8 @@ contract Linkup {
 		linkup.status = _status;
 		linkup.description = _description;
 		linkup.location = _location;
-		linkup.moment = _moment;
+		linkup.startTime = _startTime;
+		linkup.endTime = _endTime;
 		linkup.attendees = _attendees;
 
 		count++;
