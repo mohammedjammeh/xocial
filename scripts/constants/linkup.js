@@ -1,4 +1,6 @@
-module.exports = [
+const linkupAddress = '0xCaeCbA5C4A548a4B96C57CB8fD3065e477777DEA';
+
+const linkupABI = [
 	{
 		inputs: [],
 		name: 'count',
@@ -31,7 +33,7 @@ module.exports = [
 					{ internalType: 'string', name: 'location', type: 'string' },
 					{ internalType: 'uint256', name: 'moment', type: 'uint256' },
 				],
-				internalType: 'struct LinkUp.LinkUpStruct[]',
+				internalType: 'struct Linkup.LinkupStruct[]',
 				name: '',
 				type: 'tuple[]',
 			},
@@ -41,7 +43,7 @@ module.exports = [
 	},
 	{
 		inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-		name: 'linkUps',
+		name: 'linkups',
 		outputs: [
 			{ internalType: 'address', name: 'owner', type: 'address' },
 			{ internalType: 'string', name: 'name', type: 'string' },
@@ -53,3 +55,6 @@ module.exports = [
 		type: 'function',
 	},
 ];
+
+exports.linkupAddress = linkupAddress;
+exports.linkupABI = linkupABI;

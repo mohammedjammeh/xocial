@@ -2,8 +2,8 @@
 
 pragma solidity >=0.8.0 <0.9.0;
 
-contract LinkUp {
-	struct LinkUpStruct {
+contract Linkup {
+	struct LinkupStruct {
 		address owner;
 		string name;
 		string description;
@@ -11,7 +11,7 @@ contract LinkUp {
 		uint256 moment;
 	}
 
-	mapping(uint256 => LinkUpStruct) public linkUps;
+	mapping(uint256 => LinkupStruct) public linkups;
 
 	uint256 public count = 0;
 
@@ -25,28 +25,28 @@ contract LinkUp {
 		string memory _location,
 		uint256 _moment
 	) public returns (uint256) {
-		LinkUpStruct storage linkUp = linkUps[count];
+		LinkupStruct storage linkup = linkups[count];
 
-		linkUp.owner = _owner;
-		linkUp.name = _name;
-		linkUp.description = _description;
-		linkUp.location = _location;
-		linkUp.moment = _moment;
+		linkup.owner = _owner;
+		linkup.name = _name;
+		linkup.description = _description;
+		linkup.location = _location;
+		linkup.moment = _moment;
 
 		count++;
 
 		return count - 1;
 	}
 
-	function getAll() public view returns (LinkUpStruct[] memory) {
-		LinkUpStruct[] memory allLinkUps = new LinkUpStruct[](count);
+	function getAll() public view returns (LinkupStruct[] memory) {
+		LinkupStruct[] memory allLinkups = new LinkupStruct[](count);
 
 		for (uint i = 0; i < count; i++) {
-			LinkUpStruct storage item = linkUps[i];
+			LinkupStruct storage item = linkups[i];
 
-			allLinkUps[i] = item;
+			allLinkups[i] = item;
 		}
 
-		return allLinkUps;
+		return allLinkups;
 	}
 }

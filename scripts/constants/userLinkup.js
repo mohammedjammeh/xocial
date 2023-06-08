@@ -1,4 +1,6 @@
-module.exports = [
+const userLinkupAddress = '0x6Eab10069e426F01fAE90912619e79f4D703B7F3';
+
+const userLinkupABI = [
 	{
 		inputs: [],
 		name: 'count',
@@ -8,7 +10,7 @@ module.exports = [
 	},
 	{
 		inputs: [
-			{ internalType: 'uint256', name: '_link_up_id', type: 'uint256' },
+			{ internalType: 'uint256', name: '_linkup_id', type: 'uint256' },
 			{ internalType: 'uint256', name: '_user_id', type: 'uint256' },
 			{ internalType: 'string', name: '_response', type: 'string' },
 		],
@@ -19,9 +21,9 @@ module.exports = [
 	},
 	{
 		inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-		name: 'linkUpUsers',
+		name: 'userLinkups',
 		outputs: [
-			{ internalType: 'uint256', name: 'link_up_id', type: 'uint256' },
+			{ internalType: 'uint256', name: 'linkup_id', type: 'uint256' },
 			{ internalType: 'uint256', name: 'user_id', type: 'uint256' },
 			{ internalType: 'string', name: 'response', type: 'string' },
 		],
@@ -29,3 +31,6 @@ module.exports = [
 		type: 'function',
 	},
 ];
+
+exports.userLinkupAddress = userLinkupAddress;
+exports.userLinkupABI = userLinkupABI;
