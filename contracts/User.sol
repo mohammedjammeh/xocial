@@ -5,13 +5,9 @@ pragma solidity >=0.8.0 <0.9.0;
 contract User {
 	struct UserStruct {
 		address owner;
-		string firstName;
-		string lastName;
-		string email;
-		uint256 dateOfBirth;
-		uint256 phoneNumber;
-		string gender;
-		uint256[] links;
+		string fullName;
+		string[] musicTaste;
+		uint256[] contacts;
 	}
 
 	mapping(uint256 => UserStruct) public users;
@@ -21,24 +17,12 @@ contract User {
 	/*
 	 * CRUD
 	 */
-	function create(
-		address _owner,
-		string memory _firstName,
-		string memory _lastName,
-		string memory _email,
-		string memory _gender,
-		uint256 _dateOfBirth,
-		uint256 _phoneNumber
-	) public returns (uint256) {
+	function create(address _owner, string memory _fullName, string[] memory _musicTaste) public returns (uint256) {
 		UserStruct storage user = users[count];
 
 		user.owner = _owner;
-		user.firstName = _firstName;
-		user.lastName = _lastName;
-		user.email = _email;
-		user.gender = _gender;
-		user.dateOfBirth = _dateOfBirth;
-		user.phoneNumber = _phoneNumber;
+		user.fullName = _fullName;
+		user.musicTaste = _musicTaste;
 
 		count++;
 
@@ -60,9 +44,9 @@ contract User {
 	/*
 	 * Links
 	 */
-	function addLink(uint256 user_id, uint256 link_id) public {
+	function addLink(uint256 user_id, uint256 contact_id) public {
 		UserStruct storage user = users[user_id];
 
-		user.links.push(link_id);
+		user.contacts.push(contact_id);
 	}
 }

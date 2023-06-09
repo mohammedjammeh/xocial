@@ -1,8 +1,10 @@
-module.exports = [
+const userContractAddress = '0x0203B5Fab6F4145DC6c8269C0EA823B83fbE7cEd';
+
+const userContractABI = [
 	{
 		inputs: [
 			{ internalType: 'uint256', name: 'user_id', type: 'uint256' },
-			{ internalType: 'uint256', name: 'link_id', type: 'uint256' },
+			{ internalType: 'uint256', name: 'contact_id', type: 'uint256' },
 		],
 		name: 'addLink',
 		outputs: [],
@@ -19,12 +21,8 @@ module.exports = [
 	{
 		inputs: [
 			{ internalType: 'address', name: '_owner', type: 'address' },
-			{ internalType: 'string', name: '_firstName', type: 'string' },
-			{ internalType: 'string', name: '_lastName', type: 'string' },
-			{ internalType: 'string', name: '_email', type: 'string' },
-			{ internalType: 'string', name: '_gender', type: 'string' },
-			{ internalType: 'uint256', name: '_dateOfBirth', type: 'uint256' },
-			{ internalType: 'uint256', name: '_phoneNumber', type: 'uint256' },
+			{ internalType: 'string', name: '_fullName', type: 'string' },
+			{ internalType: 'string[]', name: '_musicTaste', type: 'string[]' },
 		],
 		name: 'create',
 		outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -38,13 +36,9 @@ module.exports = [
 			{
 				components: [
 					{ internalType: 'address', name: 'owner', type: 'address' },
-					{ internalType: 'string', name: 'firstName', type: 'string' },
-					{ internalType: 'string', name: 'lastName', type: 'string' },
-					{ internalType: 'string', name: 'email', type: 'string' },
-					{ internalType: 'uint256', name: 'dateOfBirth', type: 'uint256' },
-					{ internalType: 'uint256', name: 'phoneNumber', type: 'uint256' },
-					{ internalType: 'string', name: 'gender', type: 'string' },
-					{ internalType: 'uint256[]', name: 'links', type: 'uint256[]' },
+					{ internalType: 'string', name: 'fullName', type: 'string' },
+					{ internalType: 'string[]', name: 'musicTaste', type: 'string[]' },
+					{ internalType: 'uint256[]', name: 'contacts', type: 'uint256[]' },
 				],
 				internalType: 'struct User.UserStruct[]',
 				name: '',
@@ -59,14 +53,12 @@ module.exports = [
 		name: 'users',
 		outputs: [
 			{ internalType: 'address', name: 'owner', type: 'address' },
-			{ internalType: 'string', name: 'firstName', type: 'string' },
-			{ internalType: 'string', name: 'lastName', type: 'string' },
-			{ internalType: 'string', name: 'email', type: 'string' },
-			{ internalType: 'uint256', name: 'dateOfBirth', type: 'uint256' },
-			{ internalType: 'uint256', name: 'phoneNumber', type: 'uint256' },
-			{ internalType: 'string', name: 'gender', type: 'string' },
+			{ internalType: 'string', name: 'fullName', type: 'string' },
 		],
 		stateMutability: 'view',
 		type: 'function',
 	},
 ];
+
+exports.userContractAddress = userContractAddress;
+exports.userContractABI = userContractABI;

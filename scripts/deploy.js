@@ -37,7 +37,7 @@ async function SimpleStorage() {
  * Main
  */
 async function main() {
-	const contractFactory = await ethers.getContractFactory('Linkup');
+	const contractFactory = await ethers.getContractFactory('User');
 
 	// Deployment
 	console.log('Deploying contract..');
