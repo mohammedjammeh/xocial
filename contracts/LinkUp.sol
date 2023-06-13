@@ -13,6 +13,8 @@ contract Linkup {
 		address[] attendees;
 	}
 
+	event NewLinkup(LinkupStruct linkup);
+
 	mapping(uint256 => LinkupStruct) public linkups;
 
 	uint256 public count = 0;
@@ -40,6 +42,8 @@ contract Linkup {
 		linkup.attendees = _attendees;
 
 		count++;
+
+		emit NewLinkup(linkup);
 
 		return count - 1;
 	}
