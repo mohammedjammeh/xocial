@@ -5,8 +5,10 @@ pragma solidity >=0.8.0 <0.9.0;
 contract User {
 	struct UserStruct {
 		address owner;
-		string fullName;
+		string fullname;
 		string[] musicTaste;
+		string[] foodTaste;
+		string[] sportsTaste;
 		uint256[] contacts;
 	}
 
@@ -17,16 +19,39 @@ contract User {
 	/*
 	 * CRUD
 	 */
-	function create(address _owner, string memory _fullName, string[] memory _musicTaste) public returns (uint256) {
+	function create(
+		address _owner,
+		string memory _fullname,
+		string[] memory _musicTaste,
+		string[] memory _foodTaste,
+		string[] memory _sportsTaste
+	) public returns (uint256) {
 		UserStruct storage user = users[count];
 
 		user.owner = _owner;
-		user.fullName = _fullName;
+		user.fullname = _fullname;
 		user.musicTaste = _musicTaste;
+		user.foodTaste = _foodTaste;
+		user.sportsTaste = _sportsTaste;
 
 		count++;
 
 		return count - 1;
+	}
+
+	function update(
+		uint256 _id,
+		string memory _fullname,
+		string[] memory _musicTaste,
+		string[] memory _foodTaste,
+		string[] memory _sportsTaste
+	) public {
+		UserStruct storage user = users[_id];
+
+		user.fullname = _fullname;
+		user.musicTaste = _musicTaste;
+		user.foodTaste = _foodTaste;
+		user.sportsTaste = _sportsTaste;
 	}
 
 	function getAll() public view returns (UserStruct[] memory) {

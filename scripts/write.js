@@ -26,10 +26,19 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		const response = await userContractWithWallet.create(
-			'0x0A2169dfcC633289285290a61BB4d10AFA131817',
-			'Mohammed Jammeh',
-			['rap', 'jazz']
+		// const response = await userContractWithWallet.create(
+		// 	'0x0A2169dfcC633289285290a61BB4d10AFA131817',
+		// 	'Mohammed Jammeh',
+		// 	['rap', 'jazz'],
+		// 	['stew', 'curry'],
+		// 	['football', 'golf']
+		// );
+		const response = await userContractWithWallet.update(
+			0,
+			'Mohammed Jamaaly Jammeh',
+			['rap', 'jazz'],
+			['jollof', 'jerk'],
+			['football', 'golf', 'tennis']
 		);
 		await response.wait(1);
 	} catch (error) {
