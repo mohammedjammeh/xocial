@@ -27,16 +27,17 @@ const main = async () => {
 		// await response.wait(1);
 		//
 		// const response = await userContractWithWallet.create(
-		// 	'0x0A2169dfcC633289285290a61BB4d10AFA131817',
-		// 	'Mohammed Jammeh',
-		// 	['rap', 'jazz'],
-		// 	['stew', 'curry'],
-		// 	['football', 'golf']
+		// 	'Young Dough',
+		// 	['afrobeats'],
+		// 	['stew', 'fish', 'chicken'],
+		// 	['tennis', 'cricket']
 		// );
+		// await response.wait(1);
+		//
 		const response = await userContractWithWallet.update(
 			0,
-			'Mohammed Jamaaly Jammeh',
-			['rap', 'jazz'],
+			'Kick Cash Jammeh',
+			['rap', 'drill'],
 			['jollof', 'jerk'],
 			['football', 'golf', 'tennis']
 		);

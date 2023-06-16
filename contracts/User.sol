@@ -9,7 +9,6 @@ contract User {
 		string[] musicTaste;
 		string[] foodTaste;
 		string[] sportsTaste;
-		uint256[] contacts;
 	}
 
 	mapping(uint256 => UserStruct) public users;
@@ -20,23 +19,20 @@ contract User {
 	 * CRUD
 	 */
 	function create(
-		address _owner,
 		string memory _fullname,
 		string[] memory _musicTaste,
 		string[] memory _foodTaste,
 		string[] memory _sportsTaste
-	) public returns (uint256) {
+	) public {
 		UserStruct storage user = users[count];
 
-		user.owner = _owner;
+		user.owner = msg.sender;
 		user.fullname = _fullname;
 		user.musicTaste = _musicTaste;
 		user.foodTaste = _foodTaste;
 		user.sportsTaste = _sportsTaste;
 
 		count++;
-
-		return count - 1;
 	}
 
 	function update(
@@ -47,6 +43,8 @@ contract User {
 		string[] memory _sportsTaste
 	) public {
 		UserStruct storage user = users[_id];
+
+		require(user.owner == msg.sender, 'User not found.');
 
 		user.fullname = _fullname;
 		user.musicTaste = _musicTaste;
@@ -64,14 +62,5 @@ contract User {
 		}
 
 		return allUsers;
-	}
-
-	/*
-	 * Links
-	 */
-	function addLink(uint256 user_id, uint256 contact_id) public {
-		UserStruct storage user = users[user_id];
-
-		user.contacts.push(contact_id);
 	}
 }
