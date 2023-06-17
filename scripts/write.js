@@ -1,6 +1,7 @@
 const { ethers } = require('ethers');
 const { linkupAddress, linkupABI } = require('./constants/linkup');
-const { userContractAddress, userContractABI } = require('./constants/user');
+const { userAddress, userABI } = require('./constants/user');
+const { userContactAddress, userContactABI } = require('./constants/UserContact');
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
 
@@ -10,8 +11,11 @@ const signer = wallet.provider.getSigner(wallet.address);
 const linkupContract = new ethers.Contract(linkupAddress, linkupABI, signer);
 const linkupContractWithWallet = linkupContract.connect(wallet);
 
-const userContract = new ethers.Contract(userContractAddress, userContractABI, signer);
+const userContract = new ethers.Contract(userAddress, userABI, signer);
 const userContractWithWallet = userContract.connect(wallet);
+
+const userContactContract = new ethers.Contract(userContactAddress, userContactABI, signer);
+const userContactContractWithWallet = userContactContract.connect(wallet);
 
 const main = async () => {
 	try {
@@ -34,20 +38,24 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		const response = await userContractWithWallet.update(
-			0,
-			'Kick Cash Jammeh',
-			['rap', 'drill'],
-			['jollof', 'jerk'],
-			['football', 'golf', 'tennis']
-		);
+		// const response = await userContractWithWallet.update(
+		// 	0,
+		// 	'Kick Cash Jammeh',
+		// 	['rap', 'drill'],
+		// 	['jollof', 'jerk'],
+		// 	['football', 'golf', 'tennis']
+		// );
+		// await response.wait(1);
+		//
+		const response = await userContactContractWithWallet.create(0, 1);
 		await response.wait(1);
+		console.log(response);
 	} catch (error) {
 		console.log(error);
 	}
 
-	const all = await userContractWithWallet.getAll();
-	console.log(all);
+	// const all = await userContractWithWallet.getAll();
+	// console.log(all);
 };
 
 main();

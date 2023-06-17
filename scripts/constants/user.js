@@ -1,6 +1,6 @@
-const userContractAddress = '0x0C0530f807fEeEF09b4b03008F0d825c74e872C8';
+const userAddress = '0x0C0530f807fEeEF09b4b03008F0d825c74e872C8';
 
-const userContractABI = [
+const userABI = [
 	{
 		anonymous: false,
 		inputs: [
@@ -106,5 +106,5 @@ const userContractABI = [
 	},
 ];
 
-exports.userContractAddress = userContractAddress;
-exports.userContractABI = userContractABI;
+exports.userAddress = userAddress;
+exports.userABI = userABI;
