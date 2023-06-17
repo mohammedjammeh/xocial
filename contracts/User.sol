@@ -15,6 +15,9 @@ contract User {
 
 	uint256 public count = 0;
 
+	event UserCreated(UserStruct user, uint256 id);
+	event UserUpdated(UserStruct user);
+
 	/*
 	 * CRUD
 	 */
@@ -31,6 +34,8 @@ contract User {
 		user.musicTaste = _musicTaste;
 		user.foodTaste = _foodTaste;
 		user.sportsTaste = _sportsTaste;
+
+		emit UserCreated(user, count);
 
 		count++;
 	}
@@ -50,6 +55,8 @@ contract User {
 		user.musicTaste = _musicTaste;
 		user.foodTaste = _foodTaste;
 		user.sportsTaste = _sportsTaste;
+
+		emit UserUpdated(user);
 	}
 
 	function getAll() public view returns (UserStruct[] memory) {
