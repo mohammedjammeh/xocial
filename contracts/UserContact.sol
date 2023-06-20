@@ -6,13 +6,15 @@ contract UserContact {
 	struct UserContactStruct {
 		uint256 contact_id;
 		uint256 user_id;
+		bool active;
 	}
 
 	mapping(uint256 => UserContactStruct) public userContacts;
 
 	uint256 public count = 0;
 
-	event UserContactCreated(UserContactStruct user);
+	event UserContactCreated(address indexed to, UserContactStruct userContact);
+	event UserContactDestroyed(address indexed to, UserContactStruct userContact);
 
 	/*
 	 * CRUD
@@ -22,9 +24,30 @@ contract UserContact {
 
 		userContact.user_id = _user_id;
 		userContact.contact_id = _contact_id;
+		userContact.active = true;
 
-		emit UserContactCreated(userContact);
+		emit UserContactCreated(msg.sender, userContact);
 
 		count++;
+	}
+
+	function destroy(uint256 _user_contact_id) public {
+		UserContactStruct storage userContact = userContacts[_user_contact_id];
+
+		userContact.active = false;
+
+		emit UserContactDestroyed(msg.sender, userContact);
+	}
+
+	function getAll() public view returns (UserContactStruct[] memory) {
+		UserContactStruct[] memory allUserContacts = new UserContactStruct[](count);
+
+		for (uint i = 0; i < count; i++) {
+			UserContactStruct memory item = userContacts[i];
+
+			allUserContacts[i] = item;
+		}
+
+		return allUserContacts;
 	}
 }

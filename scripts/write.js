@@ -47,15 +47,16 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		const response = await userContactContractWithWallet.create(0, 1);
+		const response = await userContactContractWithWallet.create(0, 3);
+		// const response = await userContactContractWithWallet.destroy(1);
 		await response.wait(1);
-		console.log(response);
 	} catch (error) {
 		console.log(error);
 	}
 
-	// const all = await userContractWithWallet.getAll();
-	// console.log(all);
+	const all = await userContactContractWithWallet.getAll();
+	// console.log(all[0].user_id.toNumber());
+	console.log(all);
 };
 
 main();
