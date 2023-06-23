@@ -13,9 +13,9 @@ contract Linkup {
 		address[] attendees;
 	}
 
-	event NewLinkup(LinkupStruct linkup);
-
 	mapping(uint256 => LinkupStruct) public linkups;
+
+	event NewLinkup(LinkupStruct linkup);
 
 	uint256 public count = 0;
 
@@ -46,6 +46,10 @@ contract Linkup {
 		emit NewLinkup(linkup);
 
 		return count - 1;
+	}
+
+	function get(uint256 _linkup_id) public view returns (LinkupStruct memory) {
+		return linkups[_linkup_id];
 	}
 
 	function getAll() public view returns (LinkupStruct[] memory) {

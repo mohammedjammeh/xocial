@@ -1,4 +1,5 @@
 const { ethers, run, network } = require('hardhat');
+const { linkupAddress, linkupABI } = require('./constants/Linkup');
 
 /*
  * SimpleStorage
@@ -42,7 +43,7 @@ async function main() {
 	// Deployment
 	console.log('Deploying contract..');
 
-	const contract = await contractFactory.deploy();
+	const contract = await contractFactory.deploy(linkupAddress);
 	await contract.deployed();
 
 	console.log(`Deployed contract to: ${contract.address}`);
@@ -52,7 +53,8 @@ async function main() {
 	if (notHardHat && process.env.ETHERSCAN_API_KEY) {
 		console.log('Waiting for block confirmations..');
 		await contract.deployTransaction.wait(6);
-		await verify(contract.address, []);
+		// await verify(contract.address, []);
+		await verify(contract.address, [linkupAddress]);
 	}
 }
 
