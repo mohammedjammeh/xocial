@@ -2,6 +2,7 @@ const { ethers } = require('ethers');
 const { linkupAddress, linkupABI } = require('./constants/linkup');
 const { userAddress, userABI } = require('./constants/user');
 const { userContactAddress, userContactABI } = require('./constants/UserContact');
+const { userLinkupAddress, userLinkupABI } = require('./constants/UserLinkup');
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
 
@@ -16,6 +17,9 @@ const userContractWithWallet = userContract.connect(wallet);
 
 const userContactContract = new ethers.Contract(userContactAddress, userContactABI, signer);
 const userContactContractWithWallet = userContactContract.connect(wallet);
+
+const userLinkupContract = new ethers.Contract(userLinkupAddress, userLinkupABI, signer);
+const userLinkupContractWithWallet = userLinkupContract.connect(wallet);
 
 const main = async () => {
 	try {
@@ -47,15 +51,17 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		const response = await userContactContractWithWallet.create(0, 3);
+		// const response = await userContactContractWithWallet.create(0, 3);
 		// const response = await userContactContractWithWallet.destroy(1);
-		await response.wait(1);
+		// await response.wait(1);
+		//
+		// const response = await userLinkupContractWithWallet.create(0, 2, 0);
+		// await response.wait(1);
 	} catch (error) {
 		console.log(error);
 	}
 
-	const all = await userContactContractWithWallet.getAll();
-	// console.log(all[0].user_id.toNumber());
+	const all = await userLinkupContractWithWallet.get(0);
 	console.log(all);
 };
 
