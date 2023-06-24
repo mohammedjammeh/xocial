@@ -72,17 +72,15 @@ contract UserContact {
 		return all;
 	}
 
-	function getContacts(uint256 _user_id) public view returns (User.UserStruct[] memory) {
+	function getContacts(uint256 _user_id) public view returns (Pivot[] memory) {
 		UserContactStruct[] memory allUserContacts = userContacts[_user_id];
 		uint256 userContactsCount = allUserContacts.length;
-		User.UserStruct[] memory all = new User.UserStruct[](userContactsCount);
+		Pivot[] memory all = new Pivot[](userContactsCount);
 
 		for (uint256 i = 0; i < userContactsCount; i++) {
 			uint256 userContactID = allUserContacts[i].user_contact_id;
 
-			Pivot memory userContact = get(userContactID);
-
-			all[i] = userContract.get(userContact.contact_id);
+			all[i] = get(userContactID);
 		}
 
 		return all;
