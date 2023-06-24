@@ -70,4 +70,8 @@ contract User {
 
 		return allUsers;
 	}
+
+	function get(uint256 _user_id) public view returns (UserStruct memory) {
+		return users[_user_id];
+	}
 }

@@ -3,6 +3,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import './Linkup.sol';
+import './User.sol';
 
 contract UserLinkup {
 	struct UserLinkupStruct {
@@ -28,8 +29,11 @@ contract UserLinkup {
 
 	Linkup public linkupContract;
 
-	constructor(address linkupAddress) {
-		linkupContract = Linkup(linkupAddress);
+	User public userContract;
+
+	constructor(address[] memory addresses) {
+		linkupContract = Linkup(addresses[0]);
+		userContract = User(addresses[1]);
 	}
 
 	/*
@@ -72,6 +76,20 @@ contract UserLinkup {
 			uint256 userLinkupID = allUserLinkups[i].linkup_id;
 
 			all[i] = linkupContract.get(userLinkupID);
+		}
+
+		return all;
+	}
+
+	function getUsers(uint256 _linkup_id) public view returns (User.UserStruct[] memory) {
+		Linkups[] memory allLinkupUsers = linkups[_linkup_id];
+		uint256 linkupUsersCount = allLinkupUsers.length;
+		User.UserStruct[] memory all = new User.UserStruct[](linkupUsersCount);
+
+		for (uint256 i = 0; i < linkupUsersCount; i++) {
+			uint256 userLinkupID = allLinkupUsers[i].user_id;
+
+			all[i] = userContract.get(userLinkupID);
 		}
 
 		return all;

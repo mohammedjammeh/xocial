@@ -1,4 +1,4 @@
-const linkupAddress = '0x4893f849069594960f1da6676029A87DE69A09E1';
+const linkupAddress = '0xB2290542B349F7E01e22dc8BA6BA3dBEAF8ac150';
 
 const linkupABI = [
 	{

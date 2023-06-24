@@ -1,6 +1,6 @@
 const { ethers } = require('ethers');
 const { linkupAddress, linkupABI } = require('./constants/Linkup');
-const { userAddress, userABI } = require('./constants/user');
+const { userAddress, userABI } = require('./constants/User');
 const { userContactAddress, userContactABI } = require('./constants/UserContact');
 const { userLinkupAddress, userLinkupABI } = require('./constants/UserLinkup');
 
@@ -25,8 +25,8 @@ const main = async () => {
 	try {
 		// const response = await linkupContractWithWallet.create(
 		// 	'0x0A2169dfcC633289285290a61BB4d10AFA131817',
-		// 	'Dancing',
-		// 	'Dance Sess',
+		// 	'Swim',
+		// 	'Swim Sess',
 		// 	'Library',
 		// 	'1686390600000',
 		// 	'1686390600000',
@@ -35,7 +35,7 @@ const main = async () => {
 		// await response.wait(1);
 		//
 		// const response = await userContractWithWallet.create(
-		// 	'2pac Bob',
+		// 	'Jaz',
 		// 	['afrobeats'],
 		// 	['stew', 'fish', 'chicken'],
 		// 	['tennis', 'cricket']
@@ -54,14 +54,16 @@ const main = async () => {
 		// const response = await userContactContractWithWallet.create(0, 3);
 		// const response = await userContactContractWithWallet.destroy(1);
 		// await response.wait(1);
-		//
-		// const response = await userLinkupContractWithWallet.create(2, 2, 0);
+		// const response = await userLinkupContractWithWallet.create(1, 1, 0);
 		// await response.wait(1);
 	} catch (error) {
 		console.log(error);
 	}
-
-	const all = await userLinkupContractWithWallet.getLinkups(0);
+	// const all = await userLinkupContractWithWallet.getLinkups(0);
+	const all = await userLinkupContractWithWallet.getUsers(1);
+	// const all = await linkupContractWithWallet.getAll();
+	// const all = await linkupContract.get(1);
+	// const all = await userContractWithWallet.getAll();
 	console.log(all);
 };
 

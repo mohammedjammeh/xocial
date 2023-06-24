@@ -1,5 +1,6 @@
 const { ethers, run, network } = require('hardhat');
 const { linkupAddress, linkupABI } = require('./constants/Linkup');
+const { userAddress } = require('./constants/User');
 
 /*
  * SimpleStorage
@@ -43,7 +44,8 @@ async function main() {
 	// Deployment
 	console.log('Deploying contract..');
 
-	const contract = await contractFactory.deploy(linkupAddress);
+	// const contract = await contractFactory.deploy();
+	const contract = await contractFactory.deploy([linkupAddress, userAddress]);
 	await contract.deployed();
 
 	console.log(`Deployed contract to: ${contract.address}`);
@@ -54,7 +56,7 @@ async function main() {
 		console.log('Waiting for block confirmations..');
 		await contract.deployTransaction.wait(6);
 		// await verify(contract.address, []);
-		await verify(contract.address, [linkupAddress]);
+		await verify(contract.address, [[linkupAddress, userAddress]]);
 	}
 }
 
