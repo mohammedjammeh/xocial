@@ -51,19 +51,22 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		// const response = await userContactContractWithWallet.create(0, 3);
-		// const response = await userContactContractWithWallet.destroy(1);
-		// await response.wait(1);
-		// const response = await userLinkupContractWithWallet.create(1, 1, 0);
+		// const response = await userContactContractWithWallet.create(0, 2);
 		// await response.wait(1);
 	} catch (error) {
 		console.log(error);
 	}
+	const all = await userContractWithWallet.getAll();
+
 	// const all = await userLinkupContractWithWallet.getLinkups(0);
-	const all = await userLinkupContractWithWallet.getUsers(1);
+	// const all = await userLinkupContractWithWallet.getUsers(0);
+
 	// const all = await linkupContractWithWallet.getAll();
-	// const all = await linkupContract.get(1);
-	// const all = await userContractWithWallet.getAll();
+	// const all = await linkupContractWithWallet.get(1);
+
+	// const all = await userContactContractWithWallet.getAll();
+	// const all = await userContactContractWithWallet.getUserContacts(0);
+
 	console.log(all);
 };
 
