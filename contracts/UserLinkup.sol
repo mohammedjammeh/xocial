@@ -14,11 +14,11 @@ contract UserLinkup {
 	}
 
 	struct Linkups {
-		uint256 user_id;
+		uint256 user_linkup_id;
 	}
 
 	struct Users {
-		uint256 linkup_id;
+		uint256 user_linkup_id;
 	}
 
 	mapping(uint256 => UserLinkupStruct) public userLinkups;
@@ -55,6 +55,10 @@ contract UserLinkup {
 		return count - 1;
 	}
 
+	function get(uint256 _user_linkup_id) public view returns (UserLinkupStruct memory) {
+		return userLinkups[_user_linkup_id];
+	}
+
 	function getAll() public view returns (UserLinkupStruct[] memory) {
 		UserLinkupStruct[] memory allUserLinkups = new UserLinkupStruct[](count);
 
@@ -73,9 +77,11 @@ contract UserLinkup {
 		Linkup.LinkupStruct[] memory all = new Linkup.LinkupStruct[](userLinkupsCount);
 
 		for (uint256 i = 0; i < userLinkupsCount; i++) {
-			uint256 userLinkupID = allUserLinkups[i].linkup_id;
+			uint256 userLinkupID = allUserLinkups[i].user_linkup_id;
 
-			all[i] = linkupContract.get(userLinkupID);
+			UserLinkupStruct memory userLinkup = get(userLinkupID);
+
+			all[i] = linkupContract.get(userLinkup.linkup_id);
 		}
 
 		return all;
@@ -87,9 +93,11 @@ contract UserLinkup {
 		User.UserStruct[] memory all = new User.UserStruct[](linkupUsersCount);
 
 		for (uint256 i = 0; i < linkupUsersCount; i++) {
-			uint256 userLinkupID = allLinkupUsers[i].user_id;
+			uint256 userLinkupID = allLinkupUsers[i].user_linkup_id;
 
-			all[i] = userContract.get(userLinkupID);
+			UserLinkupStruct memory userLinkup = get(userLinkupID);
+
+			all[i] = userContract.get(userLinkup.user_id);
 		}
 
 		return all;

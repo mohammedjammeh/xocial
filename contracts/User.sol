@@ -4,6 +4,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 contract User {
 	struct UserStruct {
+		uint256 id;
 		address owner;
 		string fullname;
 		string[] musicTaste;
@@ -29,6 +30,7 @@ contract User {
 	) public {
 		UserStruct storage user = users[count];
 
+		user.id = count;
 		user.owner = msg.sender;
 		user.fullname = _fullname;
 		user.musicTaste = _musicTaste;

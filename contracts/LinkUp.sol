@@ -4,6 +4,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 contract Linkup {
 	struct LinkupStruct {
+		uint256 id;
 		address owner;
 		string status;
 		string description;
@@ -33,6 +34,7 @@ contract Linkup {
 	) public returns (uint256) {
 		LinkupStruct storage linkup = linkups[count];
 
+		linkup.id = count;
 		linkup.owner = _owner;
 		linkup.status = _status;
 		linkup.description = _description;
