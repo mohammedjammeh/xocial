@@ -2,6 +2,8 @@
 
 pragma solidity >=0.8.0 <0.9.0;
 
+import './UserLinkup.sol';
+
 contract User {
 	struct UserStruct {
 		uint256 id;
@@ -18,6 +20,12 @@ contract User {
 
 	event UserCreated(UserStruct user, uint256 id);
 	event UserUpdated(UserStruct user);
+
+	UserLinkup public userLinkupContract;
+
+	constructor(address[] memory addresses) {
+		userLinkupContract = UserLinkup(addresses[0]);
+	}
 
 	/*
 	 * CRUD
@@ -75,5 +83,21 @@ contract User {
 
 	function get(uint256 _user_id) public view returns (UserStruct memory) {
 		return users[_user_id];
+	}
+
+	function getAllForLinkup(uint256 _linkup_id) public view returns (User.UserStruct[] memory) {
+		UserLinkup.Linkups[] memory allLinkupUsers = userLinkupContract.getLinkupUsers(_linkup_id);
+		uint256 linkupUsersCount = allLinkupUsers.length;
+		User.UserStruct[] memory all = new User.UserStruct[](linkupUsersCount);
+
+		for (uint256 i = 0; i < linkupUsersCount; i++) {
+			uint256 userLinkupID = allLinkupUsers[i].user_linkup_id;
+
+			UserLinkup.UserLinkupStruct memory userLinkup = userLinkupContract.get(userLinkupID);
+
+			all[i] = get(userLinkup.user_id);
+		}
+
+		return all;
 	}
 }

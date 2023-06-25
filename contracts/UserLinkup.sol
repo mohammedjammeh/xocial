@@ -2,9 +2,6 @@
 
 pragma solidity >=0.8.0 <0.9.0;
 
-import './Linkup.sol';
-import './User.sol';
-
 contract UserLinkup {
 	struct UserLinkupStruct {
 		uint256 id;
@@ -26,15 +23,6 @@ contract UserLinkup {
 	mapping(uint256 => Users[]) public users;
 
 	uint256 public count = 0;
-
-	Linkup public linkupContract;
-
-	User public userContract;
-
-	constructor(address[] memory addresses) {
-		linkupContract = Linkup(addresses[0]);
-		userContract = User(addresses[1]);
-	}
 
 	/*
 	 * CRUD
@@ -71,35 +59,11 @@ contract UserLinkup {
 		return allUserLinkups;
 	}
 
-	function getLinkups(uint256 _user_id) public view returns (Linkup.LinkupStruct[] memory) {
-		Users[] memory allUserLinkups = users[_user_id];
-		uint256 userLinkupsCount = allUserLinkups.length;
-		Linkup.LinkupStruct[] memory all = new Linkup.LinkupStruct[](userLinkupsCount);
-
-		for (uint256 i = 0; i < userLinkupsCount; i++) {
-			uint256 userLinkupID = allUserLinkups[i].user_linkup_id;
-
-			UserLinkupStruct memory userLinkup = get(userLinkupID);
-
-			all[i] = linkupContract.get(userLinkup.linkup_id);
-		}
-
-		return all;
+	function getLinkupUsers(uint256 user_linkup_id) public view returns (Linkups[] memory) {
+		return linkups[user_linkup_id];
 	}
 
-	function getUsers(uint256 _linkup_id) public view returns (User.UserStruct[] memory) {
-		Linkups[] memory allLinkupUsers = linkups[_linkup_id];
-		uint256 linkupUsersCount = allLinkupUsers.length;
-		User.UserStruct[] memory all = new User.UserStruct[](linkupUsersCount);
-
-		for (uint256 i = 0; i < linkupUsersCount; i++) {
-			uint256 userLinkupID = allLinkupUsers[i].user_linkup_id;
-
-			UserLinkupStruct memory userLinkup = get(userLinkupID);
-
-			all[i] = userContract.get(userLinkup.user_id);
-		}
-
-		return all;
+	function getUserLinkups(uint256 user_linkup_id) public view returns (Users[] memory) {
+		return users[user_linkup_id];
 	}
 }

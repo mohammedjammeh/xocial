@@ -1,11 +1,6 @@
-const userLinkupAddress = '0x263882c23Aa5F57C1F5B4573b31527bb3E4F3699';
+const userLinkupAddress = '0x9E4c6ED2DBcE73289f37d7e5015Be0C952699Ecb';
 
 const userLinkupABI = [
-	{
-		inputs: [{ internalType: 'address[]', name: 'addresses', type: 'address[]' }],
-		stateMutability: 'nonpayable',
-		type: 'constructor',
-	},
 	{
 		inputs: [],
 		name: 'count',
@@ -63,21 +58,12 @@ const userLinkupABI = [
 		type: 'function',
 	},
 	{
-		inputs: [{ internalType: 'uint256', name: '_user_id', type: 'uint256' }],
-		name: 'getLinkups',
+		inputs: [{ internalType: 'uint256', name: 'user_linkup_id', type: 'uint256' }],
+		name: 'getLinkupUsers',
 		outputs: [
 			{
-				components: [
-					{ internalType: 'uint256', name: 'id', type: 'uint256' },
-					{ internalType: 'address', name: 'owner', type: 'address' },
-					{ internalType: 'string', name: 'status', type: 'string' },
-					{ internalType: 'string', name: 'description', type: 'string' },
-					{ internalType: 'string', name: 'location', type: 'string' },
-					{ internalType: 'uint256', name: 'startTime', type: 'uint256' },
-					{ internalType: 'uint256', name: 'endTime', type: 'uint256' },
-					{ internalType: 'address[]', name: 'attendees', type: 'address[]' },
-				],
-				internalType: 'struct Linkup.LinkupStruct[]',
+				components: [{ internalType: 'uint256', name: 'user_linkup_id', type: 'uint256' }],
+				internalType: 'struct UserLinkup.Linkups[]',
 				name: '',
 				type: 'tuple[]',
 			},
@@ -86,30 +72,16 @@ const userLinkupABI = [
 		type: 'function',
 	},
 	{
-		inputs: [{ internalType: 'uint256', name: '_linkup_id', type: 'uint256' }],
-		name: 'getUsers',
+		inputs: [{ internalType: 'uint256', name: 'user_linkup_id', type: 'uint256' }],
+		name: 'getUserLinkups',
 		outputs: [
 			{
-				components: [
-					{ internalType: 'uint256', name: 'id', type: 'uint256' },
-					{ internalType: 'address', name: 'owner', type: 'address' },
-					{ internalType: 'string', name: 'fullname', type: 'string' },
-					{ internalType: 'string[]', name: 'musicTaste', type: 'string[]' },
-					{ internalType: 'string[]', name: 'foodTaste', type: 'string[]' },
-					{ internalType: 'string[]', name: 'sportsTaste', type: 'string[]' },
-				],
-				internalType: 'struct User.UserStruct[]',
+				components: [{ internalType: 'uint256', name: 'user_linkup_id', type: 'uint256' }],
+				internalType: 'struct UserLinkup.Users[]',
 				name: '',
 				type: 'tuple[]',
 			},
 		],
-		stateMutability: 'view',
-		type: 'function',
-	},
-	{
-		inputs: [],
-		name: 'linkupContract',
-		outputs: [{ internalType: 'contract Linkup', name: '', type: 'address' }],
 		stateMutability: 'view',
 		type: 'function',
 	},
@@ -120,13 +92,6 @@ const userLinkupABI = [
 		],
 		name: 'linkups',
 		outputs: [{ internalType: 'uint256', name: 'user_linkup_id', type: 'uint256' }],
-		stateMutability: 'view',
-		type: 'function',
-	},
-	{
-		inputs: [],
-		name: 'userContract',
-		outputs: [{ internalType: 'contract User', name: '', type: 'address' }],
 		stateMutability: 'view',
 		type: 'function',
 	},

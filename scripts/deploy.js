@@ -1,5 +1,6 @@
 const { ethers, run, network } = require('hardhat');
 const { linkupAddress, linkupABI } = require('./constants/Linkup');
+const { userLinkupAddress, userLinkupABI } = require('./constants/UserLinkup');
 const { userAddress } = require('./constants/User');
 
 /*
@@ -39,14 +40,13 @@ async function SimpleStorage() {
  * Main
  */
 async function main() {
-	const contractFactory = await ethers.getContractFactory('UserContact');
+	const contractFactory = await ethers.getContractFactory('User');
 
 	// Deployment
 	console.log('Deploying contract..');
 
 	// const contract = await contractFactory.deploy();
-	// const contract = await contractFactory.deploy([linkupAddress, userAddress]);
-	const contract = await contractFactory.deploy([userAddress]);
+	const contract = await contractFactory.deploy([userLinkupAddress]);
 
 	await contract.deployed();
 
@@ -59,8 +59,7 @@ async function main() {
 		await contract.deployTransaction.wait(6);
 
 		// await verify(contract.address, []);
-		// await verify(contract.address, [[linkupAddress, userAddress]]);
-		await verify(contract.address, [[userAddress]]);
+		await verify(contract.address, [[userLinkupAddress]]);
 	}
 }
 
