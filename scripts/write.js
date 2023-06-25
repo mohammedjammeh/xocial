@@ -51,13 +51,15 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		// const response = await userLinkupContractWithWallet.create(0, 2, 0);
-		// await response.wait(1);
+		const response = await userContactContractWithWallet.destroy(0, 2);
+		await response.wait(1);
 	} catch (error) {
 		console.log(error);
 	}
 
-	const all = await userLinkupContractWithWallet.getUsers(2);
+	// const all = await userContactContractWithWallet.get(0, 1);
+	const all = await userContactContractWithWallet.getContacts(0);
+	// const all = await userContract.getAll();
 
 	console.log(all);
 };
