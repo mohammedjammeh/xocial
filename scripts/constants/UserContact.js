@@ -1,10 +1,28 @@
-const userContactAddress = '0xA5610fD28CA2456cae8fE1716E0a667A186f2dc0';
+const userContactAddress = '0xeaC52AEb34e2Ec1493a97F99463C7Fc0c561d330';
 
 const userContactABI = [
 	{
 		inputs: [{ internalType: 'address[]', name: 'addresses', type: 'address[]' }],
 		stateMutability: 'nonpayable',
 		type: 'constructor',
+	},
+	{
+		anonymous: false,
+		inputs: [
+			{ indexed: true, internalType: 'address', name: 'to', type: 'address' },
+			{ indexed: false, internalType: 'uint256', name: 'contactID', type: 'uint256' },
+		],
+		name: 'UserContactCreated',
+		type: 'event',
+	},
+	{
+		anonymous: false,
+		inputs: [
+			{ indexed: true, internalType: 'address', name: 'to', type: 'address' },
+			{ indexed: false, internalType: 'uint256', name: 'contactID', type: 'uint256' },
+		],
+		name: 'UserContactDestroyed',
+		type: 'event',
 	},
 	{
 		inputs: [

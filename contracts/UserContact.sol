@@ -5,14 +5,10 @@ pragma solidity >=0.8.0 <0.9.0;
 import './User.sol';
 
 contract UserContact {
-	// struct UserContactStruct {
-	// 	bool is_contact;
-	// }
-
 	mapping(uint256 => uint256[]) public userContacts;
 
-	// event UserContactCreated(address indexed to, Pivot userContact);
-	// event UserContactDestroyed(address indexed to, Pivot userContact);
+	event UserContactCreated(address indexed to, uint256 contactID);
+	event UserContactDestroyed(address indexed to, uint256 contactID);
 
 	User public userContract;
 
@@ -25,6 +21,8 @@ contract UserContact {
 	 */
 	function create(uint256 _user_id, uint256 _contact_id) public {
 		userContacts[_user_id].push(_contact_id);
+
+		emit UserContactCreated(msg.sender, _contact_id);
 	}
 
 	function destroy(uint256 _user_id, uint256 _contact_id) public {
@@ -37,6 +35,8 @@ contract UserContact {
 				contacts.pop();
 			}
 		}
+
+		emit UserContactDestroyed(msg.sender, _contact_id);
 	}
 
 	function getContacts(uint256 _user_id) public view returns (User.UserStruct[] memory) {
