@@ -3,24 +3,24 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 contract UserLinkup {
-	struct UserLinkupStruct {
+	struct UserLinkupsPivot {
 		uint256 id;
 		uint256 linkup_id;
 		uint256 user_id;
 		string response;
 	}
 
-	struct Linkups {
+	struct UsersLinkups {
 		uint256 user_linkup_id;
 	}
 
-	struct Users {
+	struct LinkupUsers {
 		uint256 user_linkup_id;
 	}
 
-	mapping(uint256 => UserLinkupStruct) public userLinkups;
-	mapping(uint256 => Linkups[]) public linkups;
-	mapping(uint256 => Users[]) public users;
+	mapping(uint256 => UserLinkupsPivot) public userLinkupsPivot;
+	mapping(uint256 => UsersLinkups[]) public userLinkups;
+	mapping(uint256 => LinkupUsers[]) public linkupUsers;
 
 	uint256 public count = 0;
 
@@ -28,42 +28,42 @@ contract UserLinkup {
 	 * CRUD
 	 */
 	function create(uint256 _user_id, uint256 _linkup_id, string memory _response) public returns (uint256) {
-		UserLinkupStruct storage userLinkup = userLinkups[count];
+		UserLinkupsPivot storage userLinkupPivot = userLinkupsPivot[count];
 
-		userLinkup.id = count;
-		userLinkup.linkup_id = _linkup_id;
-		userLinkup.user_id = _user_id;
-		userLinkup.response = _response;
+		userLinkupPivot.id = count;
+		userLinkupPivot.linkup_id = _linkup_id;
+		userLinkupPivot.user_id = _user_id;
+		userLinkupPivot.response = _response;
 
-		linkups[_linkup_id].push(Linkups(userLinkup.id));
-		users[_user_id].push(Users(userLinkup.id));
+		userLinkups[_user_id].push(UsersLinkups(userLinkupPivot.id));
+		linkupUsers[_linkup_id].push(LinkupUsers(userLinkupPivot.id));
 
 		count++;
 
 		return count - 1;
 	}
 
-	function get(uint256 _user_linkup_id) public view returns (UserLinkupStruct memory) {
-		return userLinkups[_user_linkup_id];
+	function get(uint256 _user_linkup_id) public view returns (UserLinkupsPivot memory) {
+		return userLinkupsPivot[_user_linkup_id];
 	}
 
-	function getAll() public view returns (UserLinkupStruct[] memory) {
-		UserLinkupStruct[] memory allUserLinkups = new UserLinkupStruct[](count);
+	function getAll() public view returns (UserLinkupsPivot[] memory) {
+		UserLinkupsPivot[] memory all = new UserLinkupsPivot[](count);
 
 		for (uint i = 0; i < count; i++) {
-			UserLinkupStruct memory item = userLinkups[i];
+			UserLinkupsPivot memory item = userLinkupsPivot[i];
 
-			allUserLinkups[i] = item;
+			all[i] = item;
 		}
 
-		return allUserLinkups;
+		return all;
 	}
 
-	function getLinkupUsers(uint256 user_linkup_id) public view returns (Linkups[] memory) {
-		return linkups[user_linkup_id];
+	function getUserLinkups(uint256 _user_id) public view returns (UsersLinkups[] memory) {
+		return userLinkups[_user_id];
 	}
 
-	function getUserLinkups(uint256 user_linkup_id) public view returns (Users[] memory) {
-		return users[user_linkup_id];
+	function getLinkupUsers(uint256 _linkup_id) public view returns (LinkupUsers[] memory) {
+		return linkupUsers[_linkup_id];
 	}
 }

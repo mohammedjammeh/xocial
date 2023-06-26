@@ -63,26 +63,26 @@ contract Linkup {
 	}
 
 	function getAll() public view returns (LinkupStruct[] memory) {
-		LinkupStruct[] memory allLinkups = new LinkupStruct[](count);
+		LinkupStruct[] memory all = new LinkupStruct[](count);
 
 		for (uint i = 0; i < count; i++) {
 			LinkupStruct storage item = linkups[i];
 
-			allLinkups[i] = item;
+			all[i] = item;
 		}
 
-		return allLinkups;
+		return all;
 	}
 
 	function getAllForUser(uint256 _user_id) public view returns (LinkupStruct[] memory) {
-		UserLinkup.Users[] memory allUsersLinkups = userLinkupContract.getUserLinkups(_user_id);
+		UserLinkup.UsersLinkups[] memory allUsersLinkups = userLinkupContract.getUserLinkups(_user_id);
 		uint256 userLinkupsCount = allUsersLinkups.length;
 		LinkupStruct[] memory all = new LinkupStruct[](userLinkupsCount);
 
 		for (uint256 i = 0; i < userLinkupsCount; i++) {
 			uint256 userLinkupID = allUsersLinkups[i].user_linkup_id;
 
-			UserLinkup.UserLinkupStruct memory userLinkup = userLinkupContract.get(userLinkupID);
+			UserLinkup.UserLinkupsPivot memory userLinkup = userLinkupContract.get(userLinkupID);
 
 			all[i] = get(userLinkup.linkup_id);
 		}

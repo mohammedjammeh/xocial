@@ -1,4 +1,4 @@
-const linkupAddress = '0x3dB87Dc52518986F2f85987e3c39e9e11c77f777';
+const linkupAddress = '0xCb6850DCc8aec0F184aF5f4020a2da2C97e4fC60';
 
 const linkupABI = [
 	{
@@ -99,7 +99,7 @@ const linkupABI = [
 	},
 	{
 		inputs: [{ internalType: 'uint256', name: '_user_id', type: 'uint256' }],
-		name: 'getAllFor',
+		name: 'getAllForUser',
 		outputs: [
 			{
 				components: [
