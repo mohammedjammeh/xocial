@@ -24,13 +24,13 @@ const userLinkupContractWithWallet = userLinkupContract.connect(wallet);
 const main = async () => {
 	try {
 		// const response = await linkupContractWithWallet.create(
-		// 	'0x0A2169dfcC633289285290a61BB4d10AFA131817',
 		// 	'Dancing',
 		// 	'Dancing Sess',
 		// 	'Library',
 		// 	'1686390600000',
 		// 	'1686390600000',
-		// 	['0x0A2169dfcC633289285290a61BB4d10AFA131817', '0x0A2169dfcC633289285290a61BB4d10AFA131817']
+		// 	0,
+		// 	1
 		// );
 		// await response.wait(1);
 		//
@@ -57,10 +57,14 @@ const main = async () => {
 		console.log(error);
 	}
 
-	// const all = await linkupContractWithWallet.getAllForUser(0);
-	// const all = await userContractWithWallet.getAllForLinkup(0);
+	// const all = await linkupContractWithWallet.getAllForUser(2);
+	// const all = await userContractWithWallet.getAllForLinkup(1);
 
-	// console.log(all);
+	// const all = await userContactContractWithWallet.getContacts(0);
+
+	const all = await linkupContractWithWallet.getAll();
+
+	console.log(all);
 };
 
 main();

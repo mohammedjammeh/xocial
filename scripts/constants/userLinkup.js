@@ -1,6 +1,15 @@
-const userLinkupAddress = '0xd2D829612676Ae15e51D6524E8173667B0b13635';
+const userLinkupAddress = '0x8da12914C247EEb30C8078774fAc43190aa8460d';
 
 const userLinkupABI = [
+	{
+		anonymous: false,
+		inputs: [
+			{ indexed: true, internalType: 'uint256', name: 'userID', type: 'uint256' },
+			{ indexed: false, internalType: 'uint256', name: 'linkupID', type: 'uint256' },
+		],
+		name: 'NewUserLinkup',
+		type: 'event',
+	},
 	{
 		inputs: [],
 		name: 'count',
@@ -12,7 +21,7 @@ const userLinkupABI = [
 		inputs: [
 			{ internalType: 'uint256', name: '_user_id', type: 'uint256' },
 			{ internalType: 'uint256', name: '_linkup_id', type: 'uint256' },
-			{ internalType: 'string', name: '_response', type: 'string' },
+			{ internalType: 'uint256', name: '_from_user_id', type: 'uint256' },
 		],
 		name: 'create',
 		outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -28,7 +37,8 @@ const userLinkupABI = [
 					{ internalType: 'uint256', name: 'id', type: 'uint256' },
 					{ internalType: 'uint256', name: 'linkup_id', type: 'uint256' },
 					{ internalType: 'uint256', name: 'user_id', type: 'uint256' },
-					{ internalType: 'string', name: 'response', type: 'string' },
+					{ internalType: 'uint256', name: 'response', type: 'uint256' },
+					{ internalType: 'uint256', name: 'from_user_id', type: 'uint256' },
 				],
 				internalType: 'struct UserLinkup.UserLinkupsPivot',
 				name: '',
@@ -47,7 +57,8 @@ const userLinkupABI = [
 					{ internalType: 'uint256', name: 'id', type: 'uint256' },
 					{ internalType: 'uint256', name: 'linkup_id', type: 'uint256' },
 					{ internalType: 'uint256', name: 'user_id', type: 'uint256' },
-					{ internalType: 'string', name: 'response', type: 'string' },
+					{ internalType: 'uint256', name: 'response', type: 'uint256' },
+					{ internalType: 'uint256', name: 'from_user_id', type: 'uint256' },
 				],
 				internalType: 'struct UserLinkup.UserLinkupsPivot[]',
 				name: '',
@@ -112,7 +123,8 @@ const userLinkupABI = [
 			{ internalType: 'uint256', name: 'id', type: 'uint256' },
 			{ internalType: 'uint256', name: 'linkup_id', type: 'uint256' },
 			{ internalType: 'uint256', name: 'user_id', type: 'uint256' },
-			{ internalType: 'string', name: 'response', type: 'string' },
+			{ internalType: 'uint256', name: 'response', type: 'uint256' },
+			{ internalType: 'uint256', name: 'from_user_id', type: 'uint256' },
 		],
 		stateMutability: 'view',
 		type: 'function',

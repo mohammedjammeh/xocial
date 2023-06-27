@@ -13,12 +13,9 @@ contract Linkup {
 		string location;
 		uint256 startTime;
 		uint256 endTime;
-		address[] attendees;
 	}
 
 	mapping(uint256 => LinkupStruct) public linkups;
-
-	event NewLinkup(LinkupStruct linkup);
 
 	uint256 public count = 0;
 
@@ -32,28 +29,28 @@ contract Linkup {
 	 * CRUD
 	 */
 	function create(
-		address _owner,
 		string memory _status,
 		string memory _description,
 		string memory _location,
 		uint256 _startTime,
 		uint256 _endTime,
-		address[] memory _attendees
+		uint256 _creator_id,
+		uint256 _to_user_id
 	) public returns (uint256) {
 		LinkupStruct storage linkup = linkups[count];
 
 		linkup.id = count;
-		linkup.owner = _owner;
+		linkup.owner = msg.sender;
 		linkup.status = _status;
 		linkup.description = _description;
 		linkup.location = _location;
 		linkup.startTime = _startTime;
 		linkup.endTime = _endTime;
-		linkup.attendees = _attendees;
+
+		userLinkupContract.create(_creator_id, linkup.id, _creator_id);
+		userLinkupContract.create(_to_user_id, linkup.id, _creator_id);
 
 		count++;
-
-		emit NewLinkup(linkup);
 
 		return count - 1;
 	}

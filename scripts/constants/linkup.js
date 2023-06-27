@@ -1,33 +1,10 @@
-const linkupAddress = '0xCb6850DCc8aec0F184aF5f4020a2da2C97e4fC60';
+const linkupAddress = '0x58357ce835319686C354bd9D5b22e7922F3ff487';
 
 const linkupABI = [
 	{
 		inputs: [{ internalType: 'address[]', name: 'addresses', type: 'address[]' }],
 		stateMutability: 'nonpayable',
 		type: 'constructor',
-	},
-	{
-		anonymous: false,
-		inputs: [
-			{
-				components: [
-					{ internalType: 'uint256', name: 'id', type: 'uint256' },
-					{ internalType: 'address', name: 'owner', type: 'address' },
-					{ internalType: 'string', name: 'status', type: 'string' },
-					{ internalType: 'string', name: 'description', type: 'string' },
-					{ internalType: 'string', name: 'location', type: 'string' },
-					{ internalType: 'uint256', name: 'startTime', type: 'uint256' },
-					{ internalType: 'uint256', name: 'endTime', type: 'uint256' },
-					{ internalType: 'address[]', name: 'attendees', type: 'address[]' },
-				],
-				indexed: false,
-				internalType: 'struct Linkup.LinkupStruct',
-				name: 'linkup',
-				type: 'tuple',
-			},
-		],
-		name: 'NewLinkup',
-		type: 'event',
 	},
 	{
 		inputs: [],
@@ -38,13 +15,13 @@ const linkupABI = [
 	},
 	{
 		inputs: [
-			{ internalType: 'address', name: '_owner', type: 'address' },
 			{ internalType: 'string', name: '_status', type: 'string' },
 			{ internalType: 'string', name: '_description', type: 'string' },
 			{ internalType: 'string', name: '_location', type: 'string' },
 			{ internalType: 'uint256', name: '_startTime', type: 'uint256' },
 			{ internalType: 'uint256', name: '_endTime', type: 'uint256' },
-			{ internalType: 'address[]', name: '_attendees', type: 'address[]' },
+			{ internalType: 'uint256', name: '_creator_id', type: 'uint256' },
+			{ internalType: 'uint256', name: '_to_user_id', type: 'uint256' },
 		],
 		name: 'create',
 		outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -64,7 +41,6 @@ const linkupABI = [
 					{ internalType: 'string', name: 'location', type: 'string' },
 					{ internalType: 'uint256', name: 'startTime', type: 'uint256' },
 					{ internalType: 'uint256', name: 'endTime', type: 'uint256' },
-					{ internalType: 'address[]', name: 'attendees', type: 'address[]' },
 				],
 				internalType: 'struct Linkup.LinkupStruct',
 				name: '',
@@ -87,7 +63,6 @@ const linkupABI = [
 					{ internalType: 'string', name: 'location', type: 'string' },
 					{ internalType: 'uint256', name: 'startTime', type: 'uint256' },
 					{ internalType: 'uint256', name: 'endTime', type: 'uint256' },
-					{ internalType: 'address[]', name: 'attendees', type: 'address[]' },
 				],
 				internalType: 'struct Linkup.LinkupStruct[]',
 				name: '',
@@ -110,7 +85,6 @@ const linkupABI = [
 					{ internalType: 'string', name: 'location', type: 'string' },
 					{ internalType: 'uint256', name: 'startTime', type: 'uint256' },
 					{ internalType: 'uint256', name: 'endTime', type: 'uint256' },
-					{ internalType: 'address[]', name: 'attendees', type: 'address[]' },
 				],
 				internalType: 'struct Linkup.LinkupStruct[]',
 				name: '',
