@@ -100,6 +100,23 @@ contract UserLinkup {
 		return all;
 	}
 
+	function getLinkupUserPivots(uint _linkup_id) public view returns (UserLinkupsPivot[] memory) {
+		LinkupUsers[] memory linkupUserPivots = linkupUsers[_linkup_id];
+		uint256 linkupUsersCount = linkupUserPivots.length;
+		UserLinkupsPivot[] memory all = new UserLinkupsPivot[](linkupUsersCount);
+
+		for (uint i = 0; i < linkupUsersCount; i++) {
+			LinkupUsers memory item = linkupUserPivots[i];
+
+			all[i] = userLinkupsPivot[item.user_linkup_id];
+		}
+
+		return all;
+	}
+
+	/*
+	 * Returns External Structs
+	 */
 	function getUserLinkups(uint256 _user_id) public view returns (Linkup.LinkupStruct[] memory) {
 		UserLinkup.UsersLinkups[] memory allUsersLinkups = userLinkups[_user_id];
 		uint256 userLinkupsCount = allUsersLinkups.length;

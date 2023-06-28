@@ -2,8 +2,6 @@
 
 pragma solidity >=0.8.0 <0.9.0;
 
-// import './UserLinkup.sol';
-
 contract Linkup {
 	struct LinkupStruct {
 		uint256 id;
@@ -24,8 +22,6 @@ contract Linkup {
 	/*
 	 * CRUD
 	 */
-	// uint256 _creator_id,
-	// uint256 _to_user_id
 	function create(
 		string memory _status,
 		string memory _description,
@@ -65,20 +61,4 @@ contract Linkup {
 
 		return all;
 	}
-
-	// function getAllForUser(uint256 _user_id) public view returns (LinkupStruct[] memory) {
-	// 	UserLinkup.UsersLinkups[] memory allUsersLinkups = userLinkupContract.getUserLinkups(_user_id);
-	// 	uint256 userLinkupsCount = allUsersLinkups.length;
-	// 	LinkupStruct[] memory all = new LinkupStruct[](userLinkupsCount);
-
-	// 	for (uint256 i = 0; i < userLinkupsCount; i++) {
-	// 		uint256 userLinkupID = allUsersLinkups[i].user_linkup_id;
-
-	// 		UserLinkup.UserLinkupsPivot memory userLinkup = userLinkupContract.get(userLinkupID);
-
-	// 		all[i] = get(userLinkup.linkup_id);
-	// 	}
-
-	// 	return all;
-	// }
 }

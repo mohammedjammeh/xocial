@@ -23,16 +23,18 @@ const userLinkupContractWithWallet = userLinkupContract.connect(wallet);
 
 const main = async () => {
 	try {
-		// const response = await userLinkupContractWithWallet.createLinkupPlusUserLinkup(
-		// 	'Swimming',
-		// 	'Swimming Sess',
-		// 	'Library',
-		// 	'1686390600000',
-		// 	'1686390600000',
-		// 	2,
-		// 	1
-		// );
+		// const response = await userLinkupContractWithWallet.create(0, 0, 0);
 		// await response.wait(1);
+		const response = await userLinkupContractWithWallet.createLinkupPlusUserLinkup(
+			'Partty',
+			'Parttyy Sess',
+			'Library',
+			'1686390600000',
+			'1686390600000',
+			3,
+			0
+		);
+		await response.wait(1);
 		//
 		// const response = await userContractWithWallet.create(
 		// 	'Jaz',
@@ -43,15 +45,15 @@ const main = async () => {
 		// await response.wait(1);
 		//
 		// const response = await userContractWithWallet.update(
-		// 	0,
-		// 	'Kick Cash Jammeh',
+		// 	1,
+		// 	'Jalika',
 		// 	['rap', 'drill'],
 		// 	['jollof', 'jerk'],
 		// 	['football', 'golf', 'tennis']
 		// );
 		// await response.wait(1);
 		//
-		// const response = await userLinkupContractWithWallet.create(0, 0, 0);
+		// const response = await userContactContractWithWallet.destroy(0, 1);
 		// await response.wait(1);
 	} catch (error) {
 		console.log(error);
@@ -59,10 +61,12 @@ const main = async () => {
 
 	// const all = await userContactContractWithWallet.getContacts(0);
 
-	// const all = await userLinkupContractWithWallet.getUserLinkups(2);
-	const all = await userLinkupContractWithWallet.getLinkupUsers(2);
+	// const all = await userLinkupContractWithWallet.getUserLinkups(0);
+	// const all = await userLinkupContractWithWallet.getLinkupUsers(0);
 
-	console.log(all);
+	// const all = await linkupContractWithWallet.getAll();
+
+	// console.log(all);
 };
 
 main();

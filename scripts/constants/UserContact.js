@@ -1,4 +1,4 @@
-const userContactAddress = '0xeaC52AEb34e2Ec1493a97F99463C7Fc0c561d330';
+const userContactAddress = '0x07C8F6aE1460C69A3C08b48A1770D7806aC27c08';
 
 const userContactABI = [
 	{

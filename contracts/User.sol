@@ -16,8 +16,8 @@ contract User {
 
 	uint256 public count = 0;
 
-	event UserCreated(address userAddress, UserStruct user);
-	event UserUpdated(address userAddress, UserStruct user);
+	event UserCreated(address indexed userAddress, UserStruct user);
+	event UserUpdated(address indexed userAddress, UserStruct user);
 
 	/*
 	 * CRUD

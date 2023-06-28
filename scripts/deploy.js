@@ -46,6 +46,7 @@ async function main() {
 
 	// const contract = await contractFactory.deploy();
 	const contract = await contractFactory.deploy([linkupAddress, userAddress]);
+	// const contract = await contractFactory.deploy([userAddress]);
 
 	await contract.deployed();
 
@@ -59,6 +60,7 @@ async function main() {
 
 		// await verify(contract.address, []);
 		await verify(contract.address, [[linkupAddress, userAddress]]);
+		// await verify(contract.address, [[userAddress]]);
 	}
 }
 
