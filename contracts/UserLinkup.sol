@@ -10,8 +10,8 @@ contract UserLinkup {
 		uint256 id;
 		uint256 linkup_id;
 		uint256 user_id;
-		uint256 response;
 		uint256 from_user_id;
+		bool response;
 	}
 
 	struct UsersLinkups {
@@ -27,6 +27,8 @@ contract UserLinkup {
 	mapping(uint256 => LinkupUsers[]) public linkupUsers;
 
 	event UserLinkupCreated(address indexed userAddress, Linkup.LinkupStruct linkup);
+	event UserLinkupJoined(address indexed userAddress, Linkup.LinkupStruct linkup);
+	event UserLinkupLeft(address indexed userAddress, Linkup.LinkupStruct linkup);
 
 	uint256 public count = 0;
 
@@ -82,8 +84,6 @@ contract UserLinkup {
 		return linkupID;
 	}
 
-	// function update(uint256 user_linkup_id, uint response) public returns (uint256) {}
-
 	function get(uint256 _user_linkup_id) public view returns (UserLinkupsPivot memory) {
 		return userLinkupsPivot[_user_linkup_id];
 	}
@@ -112,6 +112,23 @@ contract UserLinkup {
 		}
 
 		return all;
+	}
+
+	/*
+	 * Actions
+	 */
+	function join(uint256 user_linkup_id) public {
+		UserLinkupsPivot storage userLinkup = userLinkupsPivot[user_linkup_id];
+		userLinkup.response = true;
+
+		emit UserLinkupJoined(msg.sender, linkupContract.get(userLinkup.linkup_id));
+	}
+
+	function leave(uint256 user_linkup_id) public {
+		UserLinkupsPivot storage userLinkup = userLinkupsPivot[user_linkup_id];
+		userLinkup.response = false;
+
+		emit UserLinkupLeft(msg.sender, linkupContract.get(userLinkup.linkup_id));
 	}
 
 	/*
