@@ -68,7 +68,7 @@ contract UserLinkup {
 		uint256 _startTime,
 		uint256 _endTime,
 		uint256 _creator_id,
-		uint256 _to_user_id
+		uint256[] memory _to_user_ids
 	) public returns (uint256) {
 		// add validation,
 		// get user
@@ -79,7 +79,9 @@ contract UserLinkup {
 
 		create(_creator_id, linkupID, _creator_id);
 
-		create(_to_user_id, linkupID, _creator_id);
+		for (uint256 i = 0; i < _to_user_ids.length; i++) {
+			create(_to_user_ids[i], linkupID, _creator_id);
+		}
 
 		return linkupID;
 	}
