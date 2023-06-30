@@ -61,19 +61,27 @@ contract User {
 		emit UserUpdated(msg.sender, user);
 	}
 
-	function getAll() public view returns (UserStruct[] memory) {
-		UserStruct[] memory all = new UserStruct[](count);
+	function get(uint256 _user_id) public view returns (UserStruct memory) {
+		return users[_user_id];
+	}
 
-		for (uint i = 0; i < count; i++) {
+	function getAll() public view returns (UserStruct[] memory) {
+		return getAllWithCount(count);
+	}
+
+	function getUnconnectedAll() public view returns (UserStruct[] memory) {
+		return getAllWithCount(3);
+	}
+
+	function getAllWithCount(uint _count) private view returns (UserStruct[] memory) {
+		UserStruct[] memory all = new UserStruct[](_count);
+
+		for (uint i = 0; i < _count; i++) {
 			UserStruct storage item = users[i];
 
 			all[i] = item;
 		}
 
 		return all;
-	}
-
-	function get(uint256 _user_id) public view returns (UserStruct memory) {
-		return users[_user_id];
 	}
 }

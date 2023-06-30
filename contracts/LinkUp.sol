@@ -51,9 +51,17 @@ contract Linkup {
 	}
 
 	function getAll() public view returns (LinkupStruct[] memory) {
-		LinkupStruct[] memory all = new LinkupStruct[](count);
+		return getAllWithCount(count);
+	}
 
-		for (uint i = 0; i < count; i++) {
+	function getUnconnectedAll() public view returns (LinkupStruct[] memory) {
+		return getAllWithCount(3);
+	}
+
+	function getAllWithCount(uint _count) private view returns (LinkupStruct[] memory) {
+		LinkupStruct[] memory all = new LinkupStruct[](_count);
+
+		for (uint i = 0; i < _count; i++) {
 			LinkupStruct storage item = linkups[i];
 
 			all[i] = item;

@@ -45,19 +45,19 @@ const main = async () => {
 		// );
 		// await response.wait(1);
 		//
-		const response = await userLinkupContractWithWallet.createLinkupPlusUserLinkup(
-			'Partty',
-			'Parttyy Sess',
-			'Library',
-			'1686390600000',
-			'1686390600000',
-			3,
-			0
-		);
-		await response.wait(1);
+		// const response = await userLinkupContractWithWallet.createLinkupPlusUserLinkup(
+		// 	'Partty',
+		// 	'Parttyy Sess',
+		// 	'Library',
+		// 	'1686390600000',
+		// 	'1686390600000',
+		// 	3,
+		// 	0
+		// );
+		// await response.wait(1);
 		//
 		// const response = await userContractWithWallet.create(
-		// 	'Jaz',
+		// 	'Bobbiski',
 		// 	['afrobeats'],
 		// 	['stew', 'fish', 'chicken'],
 		// 	['tennis', 'cricket']
@@ -84,9 +84,10 @@ const main = async () => {
 	// const all = await userLinkupContractWithWallet.getUserLinkups(0);
 	// const all = await userLinkupContractWithWallet.getLinkupUsers(0);
 
-	// const all = await linkupContractWithWallet.getAll();
+	const all = await userContactContractWithWallet.getContacts(0);
+	// const all = await userContractWithWallet.getAll();
 
-	// console.log(all);
+	console.log(all);
 };
 
 main();
